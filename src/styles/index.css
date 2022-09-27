@@ -1,0 +1,207 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #F2F4F5;
+    color: #1E1E1F;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  }
+  
+  #root {
+    margin: 0 24px;
+    position: relative;
+    min-height: 100vh;
+  }
+
+
+/* Todo counter */
+.TodoCounter {
+    font-size: 24px;
+    text-align: center;
+    margin: 0;
+    padding: 48px;
+  }
+
+  /* Todo Search */
+  .TodoSearch {
+    background: #F9FBFC;
+    border-radius: 2px;
+    border: 2px solid #202329;
+    margin: 0 24px;
+    height: 64px;
+    width: calc(100% - 62px);
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    color: #1E1E1F;
+    box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.25);
+  }
+  
+  .TodoSearch::placeholder {
+    color: #A5A5A5;
+    font-family: 'Montserrat';
+    font-weight: 400;
+  }
+  
+  .TodoSearch:focus {
+    outline-color: #61DAFA;
+  }
+
+  /* Todo List */
+  .TodoList ul {
+    margin: 0;
+    padding: 0 0 56px 0;
+    list-style: none;
+  }
+
+  /* Todo Item */
+
+  .TodoItem {
+    background-color: #FAFAFA;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
+  }
+  .TodoItem--completed{
+    opacity: .5;
+  }
+  
+  .TodoItem__span {
+    margin: 24px 0 24px 24px;
+    width: calc(100% - 120px);
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .TodoItem__span--completed {
+    text-decoration: line-through;
+  }
+  
+  .TodoItem .icon {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    height: 2rem;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  /* CreateTodoButton */
+  .CreateTodoButton {
+    background-color: #61DAFA;
+    box-shadow: 0 0 1rem .5rem rgba(97, 218, 250, 0.5);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 50px;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    font-weight: bold;
+    color: #FAFAFA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    width: 64px;
+    z-index: 9999;
+  
+    transform: rotate(0);
+    transition: .3s ease;
+  }
+  
+  .CreateTodoButton:hover {
+    transform: rotate(224deg);
+  }
+
+  /* Modal */
+  .ModalBackground {
+    background: rgba(32,35,41,.8);
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  /* Form */
+
+  form {
+    width: 90%;
+    max-width: 300px;
+    background-color: #fff;
+    padding: 33px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  label {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #1E1E1F;
+    margin-bottom: 26px;
+  }
+  
+  form input {
+    background-color: #F9FBFC;
+    border: 2px solid #202329;
+    border-radius: 2px;
+    box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.25);
+    color: #1E1E1F;
+    font-size: 20px;
+    text-align: center;
+    padding: 12px;
+    width: calc(100% - 25px);
+  }
+  
+  form input::placeholder {
+    color: #A5A5A5;
+    font-family: 'Montserrat';
+    font-weight: 400;
+  }
+  
+  form input:focus {
+    outline-color: #61DAFA;
+  }
+  
+  .form__btn-container {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  form button {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    color: #202329;
+    font-weight: 400;
+    width: 120px;
+    height: 48px;
+    border-radius: 2px;
+    border: none;
+    font-family: 'Montserrat';
+  }
+  
+  form .btn--add {
+    background: #61DAFA;
+    box-shadow: 0px 5px 25px rgba(97, 218, 250, 0.5);
+  }
+  
+  form .btn--cancel {
+    background: transparent;
+  }
