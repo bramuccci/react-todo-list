@@ -1,15 +1,20 @@
 import React from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage'
+import { useLocalStorage } from './useLocalStorage'
 
-export const TodoContext = React.createContext()
+const defaultToDos = [
+    { text: "You can create To-Do's with the + button", completed: false },
+    { text: 'You can search with the box below', completed: false },
+    { text: 'You can complete a To-Do', completed: true },
+    { text: 'You can delete a To-Do', completed: true },
+]
 
-export function TodoProvider(props) {
+export function useToDos() {
     const {
         item: toDos,
         saveItem: saveToDos,
         loading,
         error,
-    } = useLocalStorage('TODOS_V1', props.defaultToDos)
+    } = useLocalStorage('TODOS_V1', defaultToDos)
 
     const [searchValue, setSearchValue] = React.useState('')
     const searchedToDos = toDos.filter(toDo => {
@@ -53,24 +58,18 @@ export function TodoProvider(props) {
 
     const [openModal, setOpenModal] = React.useState(false)
 
-    return (
-        <TodoContext.Provider
-            value={{
-                completedToDosLength,
-                totalToDosLength,
-                searchValue,
-                setSearchValue,
-                searchedToDos,
-                toggleCompleteToDo,
-                deleteToDo,
-                addToDo,
-                loading,
-                error,
-                openModal,
-                setOpenModal,
-            }}
-        >
-            {props.children}
-        </TodoContext.Provider>
-    )
+    return {
+        completedToDosLength,
+        totalToDosLength,
+        searchValue,
+        setSearchValue,
+        searchedToDos,
+        toggleCompleteToDo,
+        deleteToDo,
+        addToDo,
+        loading,
+        error,
+        openModal,
+        setOpenModal,
+    }
 }
