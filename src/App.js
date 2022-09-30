@@ -8,6 +8,9 @@ import { TodoSearch } from './components/TodoSearch'
 import { Modal } from './components/Modal'
 import { TodoForm } from './components/TodoForm'
 import { TodoHeader } from './components/TodoHeader'
+import { TodoError } from './components/TodoError'
+import { TodoLoading } from './components/TodoLoading'
+import { EmptyTodos } from './components/EmptyTodos'
 
 export function App() {
     const {
@@ -38,16 +41,14 @@ export function App() {
                 />
             </TodoHeader>
 
-            <TodoList>
-                {error && (
-                    <p>Oops! An error has ocurred, please try again later</p>
-                )}
-                {loading && <p>loading...</p>}
-                {!loading && !searchedToDos.length && (
-                    <p>Empty, add a To-Do!</p>
-                )}
-
-                {searchedToDos.map(toDo => (
+            <TodoList
+                error={error}
+                loading={loading}
+                searchedToDos={searchedToDos}
+                onError={() => <TodoError />}
+                onLoading={() => <TodoLoading />}
+                onEmptyToDos={() => <EmptyTodos />}
+                render={toDo => (
                     <TodoItem
                         key={toDo.text}
                         text={toDo.text}
@@ -56,8 +57,8 @@ export function App() {
                         toggleCompleteToDo={() => toggleCompleteToDo(toDo.text)}
                         deleteToDo={() => deleteToDo(toDo.text)}
                     />
-                ))}
-            </TodoList>
+                )}
+            />
 
             {openModal && (
                 <Modal>
