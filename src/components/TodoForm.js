@@ -1,10 +1,7 @@
 import React from 'react'
-import { TodoContext } from './TodoContext'
 
-export function TodoForm() {
+export function TodoForm({ openModal, setOpenModal, addToDo }) {
     const [newToDoValue, setNewToDoValue] = React.useState('')
-    const { addToDo } = React.useContext(TodoContext)
-    const { openModal, setOpenModal } = React.useContext(TodoContext)
 
     const onCancel = () => setOpenModal(false)
 

@@ -1,10 +1,6 @@
 import React from 'react'
-import { TodoContext } from './TodoContext'
 
-export function TodoCounter() {
-    const { completedToDosLength, totalToDosLength } =
-        React.useContext(TodoContext)
-
+export function TodoCounter({ completedToDosLength, totalToDosLength }) {
     return (
         <h2 className="TodoCounter">
             You completed {completedToDosLength} of {totalToDosLength} To-Do's
