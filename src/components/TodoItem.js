@@ -12,6 +12,7 @@ export function TodoItem({
     return (
         <li className={`TodoItem ${completed && 'TodoItem--completed'}`}>
             <img
+                alt="click to complete To-Do"
                 onClick={toggleCompleteToDo}
                 src={iconCheck}
                 className={`icon icon--check ${completed && 'icon--active'}`}
@@ -24,6 +25,7 @@ export function TodoItem({
                 {text}
             </span>
             <img
+                alt="click to delete To-Do"
                 onClick={deleteToDo}
                 src={iconClose}
                 className={`icon icon--close ${completed && 'icon--active'}`}
