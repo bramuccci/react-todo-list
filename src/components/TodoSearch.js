@@ -1,13 +1,13 @@
 import React from 'react'
 
-export function TodoSearch({ searchValue, setSearchValue }) {
+export function TodoSearch({ searchValue, setSearchValue, loading }) {
     const onSearchValueChange = e => setSearchValue(e.target.value)
 
     return (
         <input
+            className={`TodoSearch ${loading && 'TodoSearch--loading'}`}
             onChange={onSearchValueChange}
             value={searchValue}
-            className="TodoSearch"
             placeholder="Search a To-Do"
         />
     )

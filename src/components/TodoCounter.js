@@ -1,9 +1,15 @@
 import React from 'react'
 
-export function TodoCounter({ completedToDosLength, totalToDosLength }) {
+export function TodoCounter({
+    completedToDosLength,
+    totalToDosLength,
+    loading,
+}) {
     return (
         <h2 className="TodoCounter">
-            You completed {completedToDosLength} of {totalToDosLength} To-Do's
+            {loading
+                ? 'Loading...'
+                : `You completed ${completedToDosLength} of ${totalToDosLength} To-Do's`}
         </h2>
     )
 }

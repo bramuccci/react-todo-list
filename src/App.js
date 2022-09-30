@@ -31,7 +31,7 @@ function App() {
 
     return (
         <>
-            <TodoHeader>
+            <TodoHeader loading={loading}>
                 <TodoCounter
                     completedToDosLength={completedToDosLength}
                     totalToDosLength={totalToDosLength}
