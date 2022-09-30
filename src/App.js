@@ -11,8 +11,9 @@ import { TodoHeader } from './components/TodoHeader'
 import { TodoError } from './components/TodoError'
 import { TodoLoading } from './components/TodoLoading'
 import { EmptyTodos } from './components/EmptyTodos'
+import { EmptySearchResult } from './components/EmptySearchResult'
 
-export function App() {
+function App() {
     const {
         searchedToDos,
         toggleCompleteToDo,
@@ -45,9 +46,13 @@ export function App() {
                 error={error}
                 loading={loading}
                 searchedToDos={searchedToDos}
+                totalToDosLength={totalToDosLength}
                 onError={() => <TodoError />}
                 onLoading={() => <TodoLoading />}
                 onEmptyToDos={() => <EmptyTodos />}
+                onEmptySearchResult={() => (
+                    <EmptySearchResult searchValue={searchValue} />
+                )}
                 render={toDo => (
                     <TodoItem
                         key={toDo.text}
