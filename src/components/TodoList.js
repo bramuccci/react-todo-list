@@ -9,7 +9,6 @@ export function TodoList({
     onLoading,
     onEmptyToDos,
     onEmptySearchResult,
-    render,
     children,
 }) {
     return (
@@ -19,13 +18,11 @@ export function TodoList({
 
             {!loading && !totalToDosLength && onEmptyToDos()}
 
-            {searchedToDos.map(render)}
+            {searchedToDos.map(children)}
 
             {!searchedToDos.length &&
                 !!totalToDosLength &&
                 onEmptySearchResult()}
-
-            <ul>{children}</ul>
         </section>
     )
 }

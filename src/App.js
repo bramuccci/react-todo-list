@@ -53,7 +53,8 @@ function App() {
                 onEmptySearchResult={() => (
                     <EmptySearchResult searchValue={searchValue} />
                 )}
-                render={toDo => (
+            >
+                {toDo => (
                     <TodoItem
                         key={toDo.text}
                         text={toDo.text}
@@ -63,7 +64,7 @@ function App() {
                         deleteToDo={() => deleteToDo(toDo.text)}
                     />
                 )}
-            />
+            </TodoList>
 
             {openModal && (
                 <Modal>
