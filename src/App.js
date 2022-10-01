@@ -12,6 +12,7 @@ import { TodoError } from './components/TodoError'
 import { TodoLoading } from './components/TodoLoading'
 import { EmptyTodos } from './components/EmptyTodos'
 import { EmptySearchResult } from './components/EmptySearchResult'
+import { ChangeAlertWithStorageListener } from './components/ChangeAlert'
 
 function App() {
     const {
@@ -27,6 +28,7 @@ function App() {
         searchValue,
         setSearchValue,
         addToDo,
+        synchronizeToDos,
     } = useToDos()
 
     return (
@@ -79,6 +81,10 @@ function App() {
             <CreateTodoButton
                 openModal={openModal}
                 setOpenModal={setOpenModal}
+            />
+
+            <ChangeAlertWithStorageListener
+                synchronizeToDos={synchronizeToDos}
             />
         </>
     )

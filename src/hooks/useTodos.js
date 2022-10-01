@@ -12,6 +12,7 @@ export function useToDos() {
     const {
         item: toDos,
         saveItem: saveToDos,
+        synchronizeItem: synchronizeToDos,
         loading,
         error,
     } = useLocalStorage('TODOS_V1', defaultToDos)
@@ -71,5 +72,6 @@ export function useToDos() {
         error,
         openModal,
         setOpenModal,
+        synchronizeToDos,
     }
 }
