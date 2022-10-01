@@ -209,3 +209,24 @@ body {
   form .btn--cancel {
     background: transparent;
   }
+
+  /* Change Alert */
+
+  .change-alert{
+    background-color: #61d9fa91;
+    padding: 1em;
+    border-radius: 2px;
+    margin: 1em 0;
+  }
+
+  .change-alert p{
+    margin: .5em 0; 
+  }
+
+  .change-alert p span{
+    font-weight: bold;
+  }
+
+  .change-alert a{
+    font-weight: bold;
+  }

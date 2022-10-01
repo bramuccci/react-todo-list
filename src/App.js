@@ -44,6 +44,10 @@ function App() {
                 />
             </TodoHeader>
 
+            <ChangeAlertWithStorageListener
+                synchronizeToDos={synchronizeToDos}
+            />
+
             <TodoList
                 error={error}
                 loading={loading}
@@ -81,10 +85,6 @@ function App() {
             <CreateTodoButton
                 openModal={openModal}
                 setOpenModal={setOpenModal}
-            />
-
-            <ChangeAlertWithStorageListener
-                synchronizeToDos={synchronizeToDos}
             />
         </>
     )
