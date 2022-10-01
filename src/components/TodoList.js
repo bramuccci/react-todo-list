@@ -18,7 +18,7 @@ export function TodoList({
 
             {!loading && !totalToDosLength && onEmptyToDos()}
 
-            {searchedToDos.map(children)}
+            {!loading && searchedToDos.map(children)}
 
             {!searchedToDos.length &&
                 !!totalToDosLength &&
