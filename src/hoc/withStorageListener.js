@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export function withStorageListener(WrappedComponent) {
     return function WrappedComponentWithStorageListener({ synchronizeToDos }) {
         const [storageChange, setStorageChange] = useState(false)
-
-        window.addEventListener('storage', change => {
-            if (change.key === 'TODOS_V1') {
-                console.log('Changes ocurred')
-                setStorageChange(true)
+        useEffect(() => {
+            const onChange = change => {
+                if (change.key === 'TODOS_V1') setStorageChange(true)
             }
-        })
+
+            window.addEventListener('storage', onChange)
+            return () => window.removeEventListener('storage', onChange)
+        }, [])
 
         const toggleShow = () => {
             setStorageChange(false)
