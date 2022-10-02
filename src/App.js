@@ -12,7 +12,7 @@ import { TodoError } from './components/TodoError'
 import { TodoLoading } from './components/TodoLoading'
 import { EmptyTodos } from './components/EmptyTodos'
 import { EmptySearchResult } from './components/EmptySearchResult'
-import { ChangeAlertWithStorageListener } from './components/ChangeAlert'
+import { ChangeAlert } from './components/ChangeAlert'
 
 function App() {
     const {
@@ -44,9 +44,7 @@ function App() {
                 />
             </TodoHeader>
 
-            <ChangeAlertWithStorageListener
-                synchronizeToDos={synchronizeToDos}
-            />
+            <ChangeAlert synchronizeToDos={synchronizeToDos} />
 
             <TodoList
                 error={error}
