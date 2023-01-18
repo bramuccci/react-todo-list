@@ -2,10 +2,14 @@ import React from 'react'
 import { useLocalStorage } from './useLocalStorage'
 
 const defaultToDos = [
-    { text: "You can create To-Do's with the + button", completed: false },
-    { text: 'You can search with the box below', completed: false },
-    { text: 'You can complete a To-Do', completed: true },
-    { text: 'You can delete a To-Do', completed: true },
+    {
+        text: "You can create To-Do's with the + button",
+        completed: false,
+        id: 0,
+    },
+    { text: 'You can search with the box below', completed: false, id: 1 },
+    { text: 'You can complete a To-Do', completed: true, id: 2 },
+    { text: 'You can delete a To-Do', completed: true, id: 3 },
 ]
 
 export function useToDos() {
@@ -15,7 +19,7 @@ export function useToDos() {
         synchronizeItem: synchronizeToDos,
         loading,
         error,
-    } = useLocalStorage('TODOS_V1', defaultToDos)
+    } = useLocalStorage('TODOS_V2', defaultToDos)
 
     const [searchValue, setSearchValue] = React.useState('')
     const searchedToDos = toDos.filter(toDo => {
@@ -29,27 +33,26 @@ export function useToDos() {
     const completedToDosLength = toDos.filter(toDo => toDo.completed).length
     const totalToDosLength = toDos.length
 
-    const toggleCompleteToDo = toDoText => {
-        if (!toDoText) return //if toDoText is undefined, return
-        const toDoIndex = toDos.findIndex(toDo => toDo.text === toDoText)
+    const toggleCompleteToDo = id => {
         const newToDos = [...toDos]
-        newToDos[toDoIndex].completed = !newToDos[toDoIndex].completed
+        const toDo = newToDos[toDos.findIndex(toDo => toDo.id === id)]
+        toDo.completed = !toDo.completed
         saveToDos(newToDos)
     }
 
-    const deleteToDo = toDoText => {
-        if (!toDoText) return //if toDoText is undefined, return
-
-        const newToDos = toDos.filter(toDo => toDo.text !== toDoText)
+    const deleteToDo = id => {
+        const newToDos = toDos.filter(toDo => toDo.id !== id)
         saveToDos(newToDos)
     }
 
     const addToDo = text => {
+        const id = newTodoId.next().value
         try {
             const newToDos = [...toDos]
             newToDos.unshift({
                 completed: false,
                 text,
+                id: id,
             })
             saveToDos(newToDos)
         } catch (error) {
@@ -58,6 +61,15 @@ export function useToDos() {
     }
 
     const [openModal, setOpenModal] = React.useState(false)
+
+    function* generateId() {
+        let id = toDos.length
+        while (true) {
+            yield id++
+        }
+    }
+
+    const newTodoId = generateId()
 
     return {
         completedToDosLength,

@@ -60,12 +60,12 @@ export function HomePage() {
             >
                 {toDo => (
                     <TodoItem
-                        key={toDo.text}
+                        key={toDo.id}
                         text={toDo.text}
                         toDo={toDo}
                         completed={toDo.completed}
-                        toggleCompleteToDo={() => toggleCompleteToDo(toDo.text)}
-                        deleteToDo={() => deleteToDo(toDo.text)}
+                        toggleCompleteToDo={() => toggleCompleteToDo(toDo.id)}
+                        deleteToDo={() => deleteToDo(toDo.id)}
                     />
                 )}
             </TodoList>
