@@ -1,20 +1,22 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export function TodoForm({ openModal, setOpenModal, addToDo }) {
+export function TodoForm({ submitEvent, title, submitText }) {
     const [newToDoValue, setNewToDoValue] = React.useState('')
+    const navigate = useNavigate()
 
-    const onCancel = () => setOpenModal(false)
+    const onCancel = () => navigate('/')
+    const onChange = e => setNewToDoValue(e.target.value)
 
     const onSubmit = e => {
         e.preventDefault()
-        addToDo(newToDoValue)
-        setOpenModal(false)
+        submitEvent(newToDoValue)
+        navigate('/')
     }
-    const onChange = e => setNewToDoValue(e.target.value)
 
     return (
         <form onSubmit={e => onSubmit(e)}>
-            <label>Add a To-Do!</label>
+            <label>{title}</label>
             <input
                 value={newToDoValue}
                 onChange={e => onChange(e)}
@@ -29,7 +31,7 @@ export function TodoForm({ openModal, setOpenModal, addToDo }) {
                     Cancel
                 </button>
                 <button className="btn--add" type="submit">
-                    Add
+                    {submitText}
                 </button>
             </div>
         </form>

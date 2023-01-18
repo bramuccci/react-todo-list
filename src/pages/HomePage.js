@@ -1,12 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { useToDos } from '../hooks/useTodos'
 import { TodoCounter } from '../components/TodoCounter'
 import { TodoList } from '../components/TodoList'
 import { TodoItem } from '../components/TodoItem'
 import { CreateTodoButton } from '../components/CreateTodoButton'
 import { TodoSearch } from '../components/TodoSearch'
-import { Modal } from '../components/Modal'
-import { TodoForm } from '../components/TodoForm'
 import { TodoHeader } from '../components/TodoHeader'
 import { TodoError } from '../components/TodoError'
 import { TodoLoading } from '../components/TodoLoading'
@@ -15,19 +15,17 @@ import { EmptySearchResult } from '../components/EmptySearchResult'
 import { ChangeAlert } from '../components/ChangeAlert'
 
 export function HomePage() {
+    const navigate = useNavigate()
     const {
         searchedToDos,
         toggleCompleteToDo,
         deleteToDo,
         loading,
         error,
-        openModal,
-        setOpenModal,
         completedToDosLength,
         totalToDosLength,
         searchValue,
         setSearchValue,
-        addToDo,
         synchronizeToDos,
     } = useToDos()
 
@@ -66,24 +64,12 @@ export function HomePage() {
                         completed={toDo.completed}
                         toggleCompleteToDo={() => toggleCompleteToDo(toDo.id)}
                         deleteToDo={() => deleteToDo(toDo.id)}
+                        editToDo={() => navigate(`/edit/${toDo.id}`)}
                     />
                 )}
             </TodoList>
 
-            {openModal && (
-                <Modal>
-                    <TodoForm
-                        openModal={openModal}
-                        setOpenModal={setOpenModal}
-                        addToDo={addToDo}
-                    />
-                </Modal>
-            )}
-
-            <CreateTodoButton
-                openModal={openModal}
-                setOpenModal={setOpenModal}
-            />
+            <CreateTodoButton onClick={() => navigate('/new')} />
         </>
     )
 }

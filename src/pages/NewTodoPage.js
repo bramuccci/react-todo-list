@@ -1,5 +1,14 @@
 import React from 'react'
+import { TodoForm } from '../components/TodoForm'
+import { useToDos } from '../hooks/useTodos'
 
 export function NewTodoPage() {
-    return <p>add to do</p>
+    const { addToDo } = useToDos()
+    return (
+        <TodoForm
+            submitEvent={addToDo}
+            title="Add new To-Do!"
+            submitText="Add"
+        />
+    )
 }

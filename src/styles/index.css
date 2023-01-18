@@ -140,10 +140,8 @@ body {
   /* Form */
 
   form {
-    width: 90%;
-    max-width: 300px;
-    background-color: #fff;
-    padding: 33px 40px;
+    width: 100%;
+    padding: 33px 0;
     display: flex;
     justify-content: center;
     align-items: center;
