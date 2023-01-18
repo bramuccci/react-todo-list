@@ -1,13 +1,14 @@
 import React from 'react'
 import iconCheck from '../assets/icon-check.png'
 import iconClose from '../assets/icon-close.png'
+import iconEdit from '../assets/icon-edit.svg'
 
 export function TodoItem({
-    toDo,
     completed,
     toggleCompleteToDo,
     text,
     deleteToDo,
+    editToDo,
 }) {
     return (
         <li className={`TodoItem ${completed && 'TodoItem--completed'}`}>
@@ -30,6 +31,12 @@ export function TodoItem({
                 src={iconClose}
                 className={`icon icon--close ${completed && 'icon--active'}`}
             ></img>
+            <img
+                alt="click to edit To-Do"
+                onClick={editToDo}
+                src={iconEdit}
+                className={'icon'}
+            />
         </li>
     )
 }
