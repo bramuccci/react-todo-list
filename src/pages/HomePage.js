@@ -64,7 +64,11 @@ export function HomePage() {
                         completed={toDo.completed}
                         toggleCompleteToDo={() => toggleCompleteToDo(toDo.id)}
                         deleteToDo={() => deleteToDo(toDo.id)}
-                        editToDo={() => navigate(`/edit/${toDo.id}`)}
+                        editToDo={() =>
+                            navigate(`/edit/${toDo.id}`, {
+                                state: { toDoText: toDo.text },
+                            })
+                        }
                     />
                 )}
             </TodoList>
