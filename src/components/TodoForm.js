@@ -1,8 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export function TodoForm({ submitEvent, title, submitText }) {
-    const [newToDoValue, setNewToDoValue] = React.useState('')
+export function TodoForm({ submitEvent, title, submitText, defaultText = '' }) {
+    const [newToDoValue, setNewToDoValue] = React.useState(defaultText)
     const navigate = useNavigate()
 
     const onCancel = () => navigate('/')
@@ -19,7 +19,7 @@ export function TodoForm({ submitEvent, title, submitText }) {
             <label>{title}</label>
             <input
                 value={newToDoValue}
-                onChange={e => onChange(e)}
+                onChange={onChange}
                 placeholder="write here"
             />
             <div className="form__btn-container">

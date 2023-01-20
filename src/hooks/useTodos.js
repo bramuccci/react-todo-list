@@ -45,6 +45,13 @@ export function useToDos() {
         saveToDos(newToDos)
     }
 
+    const editToDo = ({ id, newText }) => {
+        const newToDos = [...toDos]
+        const toDo = newToDos[toDos.findIndex(toDo => toDo.id === id)]
+        toDo.text = newText
+        saveToDos(newToDos)
+    }
+
     const addToDo = text => {
         const id = newTodoId.next().value
         try {
@@ -54,13 +61,14 @@ export function useToDos() {
                 text,
                 id: id,
             })
+            console.log({ toDos, newToDos })
             saveToDos(newToDos)
         } catch (error) {
             console.log(error)
         }
     }
 
-    const [openModal, setOpenModal] = React.useState(false)
+    const getToDo = id => toDos.find(toDo => toDo.id === id)
 
     function* generateId() {
         let id = toDos.length
@@ -82,8 +90,8 @@ export function useToDos() {
         addToDo,
         loading,
         error,
-        openModal,
-        setOpenModal,
         synchronizeToDos,
+        editToDo,
+        getToDo,
     }
 }
