@@ -61,7 +61,6 @@ export function useToDos() {
                 text,
                 id: id,
             })
-            console.log({ toDos, newToDos })
             saveToDos(newToDos)
         } catch (error) {
             console.log(error)
