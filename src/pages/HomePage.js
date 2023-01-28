@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { useToDos } from '../hooks/useTodos'
 import { TodoCounter } from '../components/TodoCounter'
@@ -64,16 +64,12 @@ export function HomePage() {
                         completed={toDo.completed}
                         toggleCompleteToDo={() => toggleCompleteToDo(toDo.id)}
                         deleteToDo={() => deleteToDo(toDo.id)}
-                        editToDo={function () {
-                            return (
-                                <Redirect
-                                    to={{
-                                        pathname: `/edit/${toDo.id}`,
-                                        state: { toDoText: toDo.text },
-                                    }}
-                                />
-                            )
-                        }}
+                        editToDo={() =>
+                            navigate.push({
+                                pathname: `/edit/${toDo.id}`,
+                                state: { toDoText: toDo.text },
+                            })
+                        }
                     />
                 )}
             </TodoList>
