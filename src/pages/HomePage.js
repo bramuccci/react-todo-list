@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 
 import { useToDos } from '../hooks/useTodos'
 import { TodoCounter } from '../components/TodoCounter'
@@ -15,7 +15,7 @@ import { EmptySearchResult } from '../components/EmptySearchResult'
 import { ChangeAlert } from '../components/ChangeAlert'
 
 export function HomePage() {
-    const navigate = useNavigate()
+    const navigate = useHistory()
     const {
         searchedToDos,
         toggleCompleteToDo,
@@ -64,16 +64,21 @@ export function HomePage() {
                         completed={toDo.completed}
                         toggleCompleteToDo={() => toggleCompleteToDo(toDo.id)}
                         deleteToDo={() => deleteToDo(toDo.id)}
-                        editToDo={() =>
-                            navigate(`/edit/${toDo.id}`, {
-                                state: { toDoText: toDo.text },
-                            })
-                        }
+                        editToDo={function () {
+                            return (
+                                <Redirect
+                                    to={{
+                                        pathname: `/edit/${toDo.id}`,
+                                        state: { toDoText: toDo.text },
+                                    }}
+                                />
+                            )
+                        }}
                     />
                 )}
             </TodoList>
 
-            <CreateTodoButton onClick={() => navigate('/new')} />
+            <CreateTodoButton onClick={() => navigate.push('/new')} />
         </>
     )
 }
