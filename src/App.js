@@ -9,15 +9,17 @@ export function App() {
     return (
         <HashRouter>
             <Switch>
-                {/* <Route path="*" element={<NotFound />} /> */}
+                <Route exact path="/">
+                    <HomePage />
+                </Route>
                 <Route path="/new">
                     <NewTodoPage />
                 </Route>
                 <Route path="/edit/:id">
                     <EditTodoPage />
                 </Route>
-                <Route path="/">
-                    <HomePage />
+                <Route path="*">
+                    <NotFound />
                 </Route>
             </Switch>
         </HashRouter>
